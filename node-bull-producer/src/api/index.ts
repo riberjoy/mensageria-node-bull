@@ -19,9 +19,28 @@ const postEmail = async (_req, res) => {
   return res.send(body).status(200);
 };
 
+const postCandidato = async (_req, res) => {
+  const body: {
+    partyNumber: number, 
+    name: string, 
+    photo: string 
+  } = _req.body;
+  await queues.candidato.add(body);
+  return res.send(body).status(200);
+};
+
+const postVote = async (_req, res) => {
+  const body: {
+    partyNumber: number, 
+  } = _req.body;
+  await queues.vote.add(body);
+  return res.send(body).status(200);
+};
  
 router.get('/', getPing);
 router.post('/log', postLog);
 router.post('/email', postEmail);
+router.post('/candidate', postCandidato);
+router.post('/vote', postVote);
 
 export default router;
