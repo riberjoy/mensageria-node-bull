@@ -1,5 +1,5 @@
 import * as express from 'express';
-import queues from '../queues';
+//import queues from '../queues';
 const router = express.Router();
 
 const getPing = async (_req, res) => {
@@ -9,7 +9,7 @@ const getPing = async (_req, res) => {
 
 const postLog = async (_req, res) => {
   const body = { message: _req.body.message };
-  await queues.log.add(body);
+  //await queues.log.add(body);
   return res.send(body).status(200);
 };
 
